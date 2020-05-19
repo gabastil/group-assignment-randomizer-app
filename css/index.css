@@ -75,19 +75,20 @@ label {
 }
 
 .button {
-    border: 1px solid darkcyan;
+    border: 1px solid darkgray;
     font-size: 1.2em;
-    background-color: skyblue;
-    color: white;
+    background-color: lightgray;
+    /* color: white; */
     padding: 1em;
-    margin: 0.5em;
+    /* margin: 0.5em; */
     border-radius: 0.25em;
     transition: background-color 0.25s ease;
     width: 100%;
 }
 
 .button:hover {
-    background-color: darkcyan;
+    background-color: rgb(115, 196, 233);
+    color: white;
     transition: background-color 0.25s ease;
 }
 
