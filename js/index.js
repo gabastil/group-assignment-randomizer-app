@@ -16,7 +16,7 @@ $(document).ready(function(){
     assign.click(function(){
         output.empty();
 
-        let items = input.val().split(',');
+        let items = getInput(input);
         let validListSize = items.length > 0;
         let singleItemNotBlank = validListSize;
 
@@ -25,15 +25,19 @@ $(document).ready(function(){
         }
 
         if (validListSize && singleItemNotBlank){
-            let itemsToGroup = processArrayOfItems(items);
-            let userSetGroups = select.val();
-            let groupedItems = assignArrayToGroups(itemsToGroup, userSetGroups)
+            let inputItems = getItems(items);
+            let counts = getcounts(inputItems, select.val());
+            let groups = getGroups(inputItems, counts);
 
-            let idx, table;
-            for (idx in groupedItems){
-                table = createTableWith(groupedItems[idx], idx);
-                output.append(table);
+            // Add code to update the 'Number of Groups' input to counts
+
+            let table, html;
+
+            for (table in groups){
+                html = generateTable(groups[table], table);
+                output.append(html);
             }
+
         } else {
             let message = `<p>
                               Please specify a comma-separated
@@ -55,13 +59,36 @@ $(document).ready(function(){
 });
 
 /**
+ * Return an Array of string items
+ * @param {String} input : Input string of items to group
+ * @param {String} delim : character to split input string by. Default is a comma
+ */
+function getInput(input, delim=','){
+    return input.val().split(delim)
+}
+
+/**
+ * Return the maximum number of groups based on the number of list items
+ * @param {Array} arr : List of user input items to group
+ * @param {Integer} count : User input number of groups to create
+ */
+function getcounts(arr, count){
+    let max_count = arr.length;
+    return max_count < Number(count) ? max_count : Number(count);
+}
+
+/**
  * Return an Array of trimmed comma separated values
  * @param {Array} arr : value from textarea to process into list
  */
-function processArrayOfItems(arr){
-    let output = [];
+function getItems(arr){
+    let output = [], current;
     for (let item of arr){
-        output.push(item.trim());
+        current = item.trim();
+
+        if (current){
+            output.push(current);
+        }
     }
     return output;
 }
@@ -71,7 +98,7 @@ function processArrayOfItems(arr){
  * @param {Array} arr : array of items to assign to groups
  * @param {int} n : maximum number of groups
  */
-function assignArrayToGroups(arr, n){
+function getGroups(arr, n){
     let output = [], max = n, random_number, index;
 
     while (max > 0){
@@ -90,13 +117,18 @@ function assignArrayToGroups(arr, n){
     return output;
 }
 
-function createTableWith(arr, idx){
+/**
+ * Return an HTML table with the Array items passed through
+ * @param {Array} arr : Array of items to put into a table
+ * @param {Integer} idx : The current Array or group index for labeling
+ */
+function generateTable(arr, idx){
     let tbody = '', item;
 
     for (item in arr){
         tbody += `<tr>
-                        <td>${item}. ${arr[item]}</td>
-                    </tr>`
+                    <td>${item}. ${arr[item]}</td>
+                  </tr>`
     }
 
     return `<table>
