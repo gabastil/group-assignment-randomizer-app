@@ -7,22 +7,43 @@
     <body>
         <div class="header">
             <ul class="header nav">
-                <li>Group Randomizer</li>
+                <li>Back to <a href='www.glennabastillas.com'>Glenn Abastillas</a></li>
             </ul>
         </div>
         <div class="body">
-            <div class="body instructions">
-                <h1>Group Assignment Randomizer</h1>
-                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+            <div class="instructions">
+                <div class="instructions-left">
+                    <h1>Group Assignment Randomizer</h1>
+                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
+                </div>
+                <div class="actions">
+                    <button id="assign" class="button">Assign</button>
+                    <label>Number of Groups</label>
+                    <input type="text" class="select" value="3" required>
+                </div>
             </div>
-            <div class="body actions">
-                <button id="assign" class="body button">Assign</button>
-                <select id="n-groups" class="body select"></select>
+            <div class="input">
+                <textarea type="text" name="input" placeholder="Enter, items, as, a, comma, separated, list" required></textarea>
             </div>
-            <div></div>
+            <div class="output">
+                <table>
+                    <tbody>
+                        <th>Group 1</th>
+                        <tr>
+                            <td>Empty Group</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody>
+                        <th>Group 2</th>
+                        <tr>
+                            <td>Empty Group</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="footer">
             <ul class="footer nav">
