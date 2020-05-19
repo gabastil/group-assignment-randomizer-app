@@ -6,31 +6,34 @@
     </head>
     <body>
         <div class="header">
-            <ul class="header nav">
-                <li>Back to <a href='www.glennabastillas.com'>Glenn Abastillas</a></li>
-            </ul>
+            <div class="nav">
+                <span>
+                    &leftarrow;
+                </span>
+                <a href='www.glennabastillas.com'>back</a>
+            </div>
         </div>
         <div class="body">
             <div class="instructions">
-                <div class="instructions-left">
+                <div class="explanations">
                     <h1>Group Assignment Randomizer</h1>
-                    <p>
-                        Enter your list of items as comma-separated values in the text area below.
-                        Click on the text area to enter items needing grouping and to remove current groups.
-                        Click on <span>Assign</span> to randomly group your items.
-                    </p>
+                    <ol>
+                        <li>Enter <span>number of groups</span> to create in the text box to the right.</li>
+                        <li>Type your <span>list of items</span> as <span>comma separated values</span> below.</li>
+                        <li>Click on <span>assign</span> the grouped items below the text box.</li>
+                    </ol>
                 </div>
-                <div class="actions">
-                    <button id="assign" class="button">Assign</button>
+                <div class="assignments">
                     <label>Number of Groups</label>
                     <input type="text" class="select" value="3" required>
+                    <button id="assign" class="button">Assign</button>
                 </div>
             </div>
             <div class="input">
                 <textarea type="text" name="input" placeholder="Enter, items, as, a, comma, separated, list" required></textarea>
             </div>
             <div class="output">
-                <table>
+                <!-- <table>
                     <tbody>
                         <th>Group 1</th>
                         <tr>
@@ -45,12 +48,12 @@
                             <td>Empty Group</td>
                         </tr>
                     </tbody>
-                </table>
+                </table> -->
             </div>
         </div>
         <div class="footer">
-            <ul class="footer nav">
-                <li>For more information contact: Blagrg</li>
+            <ul class="nav">
+                <li>Encounter any issues? Please log a ticket in <a href="https://github.com/gabastil/group-assignment-randomizer-app/issues">this app's GitHub Repo.</a></li>
             </ul>
         </div>
     </body>

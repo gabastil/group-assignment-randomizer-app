@@ -10,7 +10,6 @@ $(document).ready(function(){
 
     input.click(function(){
         $(this).removeClass('warning');
-        output.empty();
     });
 
     assign.click(function(){
@@ -42,7 +41,7 @@ $(document).ready(function(){
             let message = `<p>
                               Please specify a comma-separated
                               list of things you would like to
-                              group.
+                              group (e.g., 'item1, item2, item3')
                            </p>`;
 
 
@@ -99,22 +98,36 @@ function getItems(arr){
  * @param {int} n : maximum number of groups
  */
 function getGroups(arr, n){
-    let output = [], max = n, random_number, index;
+    let output = [], groups = n;
 
-    while (max > 0){
+    while (groups > 0){
         output.push([]);
-        max--;
+        groups--;
     }
 
-    for (let item of arr){
-        random_number = Math.random() * n;
-        index = Math.floor(random_number);
-        if (output[index] !== undefined){
-            output[index].push(item);
-        }
+    let shuffled = shuffle(arr), assignment, index;
+
+    for (index in shuffled){
+        assignment = index % n;
+        console.log(index, assignment, n, output[assignment]);
+        output[assignment].push(shuffled[index]);
     }
 
     return output;
+}
+
+/**
+ * Shuffle an Array in place randomly
+ * @param {Array} arr : List of items to shuffle
+ */
+function shuffle(arr) {
+    let i, j;
+    for (i = arr.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
 }
 
 /**
@@ -127,13 +140,13 @@ function generateTable(arr, idx){
 
     for (item in arr){
         tbody += `<tr>
-                    <td>${item}. ${arr[item]}</td>
+                    <td>${Number(item) + 1}. ${arr[item]}</td>
                   </tr>`
     }
 
     return `<table>
                 <tbody>
-                    <th>Group ${idx}</th>
+                    <th>Group ${Number(idx)+1} <span class='th-n'>(n=${arr.length})</span></th>
                     ${tbody}
                 </tbody>
             </table>`;
