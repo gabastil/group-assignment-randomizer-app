@@ -98,6 +98,7 @@ label {
 .explanations {
     width: 60%;
     font-size: 1.25em;
+    cursor: default;
 }
 
 .explanations p {
@@ -142,7 +143,7 @@ label {
 }
 
 .select:focus {
-    border-radius: 0.25em;
+    /* border-radius: 0.25em; */
     background-color: lightyellow;
     transition: all 0.25s ease;
 }
@@ -246,7 +247,7 @@ label {
 .footer {
     display: flex;
     height: 2em;
-    padding: 1em 0.5em 1em 0.5em;
+    padding: 1em 0.5em 0.5em 0.5em;
     background-color: slategrey;
     color: white;
     text-align: center;
@@ -255,3 +256,4 @@ label {
 .footer a {text-decoration: none; color: lightskyblue;}
 .footer a:active {color: darkblue;}
 .footer a:hover {color: black;}
+.footer span {font-weight: 600;}

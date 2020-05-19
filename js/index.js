@@ -25,7 +25,7 @@ $(document).ready(function(){
 
         if (validListSize && singleItemNotBlank){
             let inputItems = getItems(items);
-            let counts = getcounts(inputItems, select.val());
+            let counts = getCounts(inputItems, select.val());
             let groups = getGroups(inputItems, counts);
 
             // Add code to update the 'Number of Groups' input to counts
@@ -71,8 +71,12 @@ function getInput(input, delim=','){
  * @param {Array} arr : List of user input items to group
  * @param {Integer} count : User input number of groups to create
  */
-function getcounts(arr, count){
+function getCounts(arr, count){
     let max_count = arr.length;
+
+    if (Number(count) === NaN){
+        return NaN;
+    }
     return max_count < Number(count) ? max_count : Number(count);
 }
 
