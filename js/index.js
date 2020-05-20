@@ -8,8 +8,36 @@ $(document).ready(function(){
           input = body.find('textarea'),
           output = body.find('div.output');
 
+    const text_1 = body.find('span#number-of-groups'),
+          text_2 = body.find('span#list-of-items'),
+          text_3 = body.find('span#assign');
+
+    const texts = [
+        [text_1, select],
+        [text_2, input],
+        [text_3, assign],
+    ];
+
+    // Highlight the different interactive fields on the form
+    for (let text of texts){
+        text[0].hover(() => {
+            text[1].addClass('highlight');
+            console.log(text);
+        }, () => {
+            text[1].removeClass('highlight');
+            console.log('end');
+        });
+    }
+
+    // If there is a warning regarding input data, remove it
     input.click(function(){
         $(this).removeClass('warning');
+    });
+
+    select.on('change', (data) => {
+        let value = data.target.value;
+        data.target.value = value > 50 ? 50 : data.target.value;
+        data.target.value = value < 1 ? 1 : data.target.value;
     });
 
     assign.click(function(){
@@ -38,19 +66,23 @@ $(document).ready(function(){
             }
 
         } else {
-            let message = `<p>
+            let message = `<p class='warning-banner'>
                               Please specify a comma-separated
-                              list of things you would like to
-                              group (e.g., 'item1, item2, item3')
+                              list of items you would like to
+                              group in the field above.
                            </p>`;
 
 
 
             output.append(message);
-            input.addClass('warning');
+            // input.addClass('warning');
+
+            // setTimeout(() => {
+            //     input.removeClass('warning');
+            // }, 250);
+
             setTimeout(() => {
                 output.empty();
-                input.removeClass('warning');
             }, 3000);
         }
     })
@@ -154,4 +186,16 @@ function generateTable(arr, idx){
                     ${tbody}
                 </tbody>
             </table>`;
+}
+
+/**
+ * Toggle visibility of a guide arrow
+ * @param {JQuery selection} arrow : ID name of HTML element containing the arrow
+ */
+function toggleArrow(self, arrow){
+    if (arrow.hasClass('visible')){
+        arrow.removeClass('visibile');
+    } else {
+        arrow.addClass('visible');
+    }
 }

@@ -18,16 +18,24 @@
                 <div class="explanations">
                     <h1>Group Assignment Randomizer</h1>
                     <ol>
-                        <li>Type your <span>list of items</span> as <span>comma separated values</span></li>
-                        <li>Enter <span>number of groups</span> to create</li>
-                        <li>Click on <span>assign</span> to see groups</li>
+                        <li>Type your <span id="list-of-items">list of items</span> below</li>
+                        <li>Enter <span id="number-of-groups">number of groups</span> to create</li>
+                        <li>Click on <span id="assign">assign</span> to see groups</li>
                     </ol>
                 </div>
+
                 <div class="assignments">
-                    <label>Number of Groups</label>
+                    <label>Number of Groups <span>(Max 50)</span></label>
                     <input type="text" class="select" value="3" required>
                     <button id="assign" class="button">Assign</button>
+                    <!-- <div id="number-of-groups" class="guide-parent">
+                        <div id="arrow-number-of-groups" class="guide-child arrow">&rarr;</div>
+                    </div>
+                    <div id="assign" class="guide-parent">
+                        <div id="arrow-assign" class="guide-child arrow">&rarr;</div>
+                    </div> -->
                 </div>
+
             </div>
             <div class="input">
                 <textarea type="text" name="input" placeholder="Enter, items, as, a, comma, separated, list" required></textarea>

@@ -10,10 +10,6 @@ body {
     height: 100vh;
 }
 
-div {
-    /* flex-grow: 1; */
-}
-
 h1 {
     text-transform: capitalize;
 }
@@ -64,7 +60,7 @@ label {
 .header .nav a:hover {
     border-radius: 0.25em;
     color: royalblue;
-    background-color: lightskyblue;
+    /* background-color: lightskyblue; */
     cursor: pointer;
 }
 
@@ -78,8 +74,7 @@ label {
 .body {
     display: flex;
     flex-grow: 1;
-    flex-flow: column;
-    width: 75%;
+    flex-flow: column nowrap;
     margin: 3em auto 3em auto;
     user-select: none;
     -moz-user-select: none;
@@ -88,7 +83,6 @@ label {
 }
 
 .instructions {
-    /* height: 25%; */
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
@@ -96,34 +90,58 @@ label {
 }
 
 .explanations {
-    width: 60%;
     font-size: 1.25em;
     cursor: default;
 }
 
-.explanations p {
-    font-kerning: normal;
-    /* font-size: .9em; */
-}
-
-.explanations li {
-    margin-left: 2em;
-}
-
-.explanations span {
-    /* font-family: 'Courier New', Courier, monospace; */
-    /* font-size: 0.9em; */
-    color: slateblue;
-}
+/* .explanations p {font-kerning: normal;} */
+.explanations li {margin-left: 2em;}
+.explanations span {color: slateblue; cursor: pointer;}
 
 .assignments {
-    width: auto;
+    height: 100%;
+    width: 25%;
     text-align: center;
     display: flex;
     flex-flow: column nowrap;
     align-content: space-around;
-    align-items: center;
-    flex-grow: 1;
+}
+
+.assignments label {width: auto;}
+
+.guide-parent {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    align-content: middle;
+}
+.guide-child {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -2em;
+    cursor: pointer;
+}
+
+.arrow {
+    font-size: 3em;
+    font-family: Arial, Helvetica, sans-serif;
+    color: green;
+    /* background-color: lightcoral; */
+    padding: 0.25em;
+    border-radius: 0.25em;
+    line-height: .2;
+    font-weight: 800;
+    vertical-align: middle;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 1s ease;
+}
+
+.arrow-visible {
+    visibility: visible;
+    opacity: 1;
+    transition: all 2s ease;
 }
 
 .select {
@@ -132,9 +150,12 @@ label {
     background-color: white;
     border-radius: 0.25em;
     text-align: center;
-    width: 3em;
+    /* width: 3em; */
     margin-bottom: 0.25em;
-    flex-grow: 0 1;
+    /* flex-shrink: 1; */
+    /* background-color: pink; */
+    border: 1px solid rgb(225, 225, 225);
+    transition: all 1s ease;
 }
 
 .select:hover {
@@ -151,12 +172,12 @@ label {
 .button {
     border: 1px solid darkgray;
     font-size: 1.2em;
-    background-color: lightgray;
-    /* color: white; */
+    background-color: slategray;
+    color: white;
     padding: 0.25em 1em 0.25em 1em;
     /* margin: 0.5em; */
     border-radius: 0.25em;
-    transition: background-color 0.25s ease;
+    transition: all 1s ease;
     /* width: 100%; */
 }
 
@@ -173,19 +194,15 @@ label {
     transition: all 0.25s ease;
 }
 
-.warning {
-    background-color: lightpink;
-    transition: all 0.5s ease;
-}
-
 .input {
     display: flex;
     flex-direction: row;
     align-items: stretch;
-    height: 5em;
+    height: 6em;
     padding-top: 1em;
     padding-bottom: 1em;
     /* background-color: peru; */
+    transition: all 1s ease;
 }
 
 .output {
@@ -229,13 +246,6 @@ label {
     background-color: rgb(233, 233, 233);
 }
 
-.output p {
-    margin: auto;
-    font-size: 1.5em;
-    color: mediumvioletred;
-    opacity: 0.5;
-}
-
 .output .th-n {
     font-family: 'Times New Roman', Times, serif;
     font-style: italic;
@@ -246,14 +256,42 @@ label {
 
 .footer {
     display: flex;
+    flex-flow: row wrap;
     height: 2em;
     padding: 1em 0.5em 0.5em 0.5em;
     background-color: slategrey;
     color: white;
-    text-align: center;
+    /* text-align: center; */
+    align-items: center;
+    align-content: center;
 }
 
 .footer a {text-decoration: none; color: lightskyblue;}
 .footer a:active {color: darkblue;}
 .footer a:hover {color: black;}
 .footer span {font-weight: 600;}
+
+.highlight {
+    border: 1px solid red;
+    background-color: lightsalmon;
+    transition: background-color 0.5s ease,
+                border 1s ease;
+}
+
+.warning {
+    background-color: lightpink;
+    transition: all 0.5s ease;
+}
+
+.warning-banner {
+    /* border-radius: 0.25em; */
+    width: 100%;
+    background-color: pink;
+    padding: 0.25em;
+    border-left: 5px solid crimson;
+
+    color: darkred;
+    margin: auto;
+    font-size: 1.5em;
+    opacity: 0.5;
+}
